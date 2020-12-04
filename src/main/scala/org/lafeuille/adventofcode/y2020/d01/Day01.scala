@@ -15,9 +15,20 @@ object Day01 {
 
 object Day01Part1 extends App {
 
-  def answer(expenses: List[Int]) =
+  def answer(expenses: List[Int]): Option[Int] =
     expenses
       .combinations(2)
+      .withFilter(_.sum == 2020)
+      .collectFirst(_.product)
+
+  println(answer(Day01.myExpenses))
+}
+
+object Day01Part2 extends App {
+
+  def answer(expenses: List[Int]): Option[Int] =
+    expenses
+      .combinations(3)
       .withFilter(_.sum == 2020)
       .collectFirst(_.product)
 
