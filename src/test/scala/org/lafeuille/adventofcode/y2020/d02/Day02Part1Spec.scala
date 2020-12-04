@@ -10,9 +10,9 @@ class Day02Part1Spec extends AnyWordSpec with Matchers with TableDrivenPropertyC
 
     val table = Table(
       ("Policy", "Password", "Valid"),
-      (Policy(1, 3, 'a'), "abcde", true),
-      (Policy(1, 3, 'b'), "cdefg", false),
-      (Policy(2, 9, 'c'), "ccccccccc", true)
+      (CountPolicy(1, 3, 'a'), "abcde", true),
+      (CountPolicy(1, 3, 'b'), "cdefg", false),
+      (CountPolicy(2, 9, 'c'), "ccccccccc", true)
     )
 
     forAll(table) { (policy, password, valid) =>
@@ -21,11 +21,12 @@ class Day02Part1Spec extends AnyWordSpec with Matchers with TableDrivenPropertyC
       }
     }
   }
+
   "My input" should {
 
     val expected = 550
-    s"have 550 valid passwords $expected" in {
-      Day02Part1.countValid(Day02.myPolicies) shouldBe expected
+    s"have $expected valid passwords" in {
+      Day02Part1.countValid(Day02.myCountPolicies) shouldBe expected
     }
   }
 
